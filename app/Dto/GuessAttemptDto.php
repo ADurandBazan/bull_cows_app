@@ -62,7 +62,7 @@ class GuessAttemptDto
         array $bulls = [],
         array $cows = [],
         int $attemps = 0,
-        float $time_available = 0,
+        float $game_duration = 0,
         int $ranking = 0
     ) {
         $this->attemptId = $attemptId;
@@ -70,7 +70,7 @@ class GuessAttemptDto
         $this->bulls = $bulls;
         $this->cows = $cows;
         $this->attemps = $attemps;
-        $this->evaluation = $time_available / 2 + $attemps;
+        $this->evaluation = $game_duration / 2 + $attemps;
         $this->ranking = $ranking;
     }
 

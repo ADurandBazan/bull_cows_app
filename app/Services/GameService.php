@@ -84,7 +84,7 @@ class GameService implements GameServiceInterface
             $bulls,
             $cows,
             $game->attempts_count,
-            $availableTime,
+            $game->getDuration(),
             $gamesRanking
         );
         $this->proposalRepository->storeGuessAttempt($gameId, $attemptData, $availableTime);
@@ -170,7 +170,7 @@ class GameService implements GameServiceInterface
     }
 
     // Calculate the number of cows (correct digits in the wrong positions)
-    public function getCows($secretString, $inputString): array
+    public function getCows(string $secretString, string $inputString): array
     {
         $cows_count = 0;
         $cows_chars = [];

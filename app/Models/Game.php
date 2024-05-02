@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Game extends Model
 {
@@ -27,5 +28,10 @@ class Game extends Model
     public function isExpired(): bool
     {
         return !is_null($this->expires_at) && now()->gt($this->expires_at);
+    }
+
+    public function getDuration(): float
+    {
+       return now()->gt($this->expires_at)? 0 : Carbon::parse($this->expires_at)->diffInSeconds(now());
     }
 }
