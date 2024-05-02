@@ -2,13 +2,20 @@
 
 namespace App\Repositories;
 
+use App\Dto\GuessAttemptDto;
 use App\Repositories\Interfaces\GuessAttemptRepositoryInterface;
 use Illuminate\Support\Facades\Cache;
-use App\Dto\GuessAttemptDto;
 
 class GuessAttemptRepository implements GuessAttemptRepositoryInterface
 {
-    // Store a proposal with the given game ID, proposal, and available time
+    /**
+     * Store a proposal with the given game ID, proposal, and available time
+     *
+     * @param int $gameId
+     * @param GuessAttemptDto $proposal
+     * @param int $availableTime
+     * @return void
+     */
     public function storeGuessAttempt(int $gameId, GuessAttemptDto $proposal, int $availableTime): void
     {
 
@@ -22,14 +29,24 @@ class GuessAttemptRepository implements GuessAttemptRepositoryInterface
         Cache::put($gameId, $data, $availableTime);
     }
 
-    // Get all proposals for the game with the given game ID
+    /**
+     * Get all proposals for the game with the given game ID
+     *
+     * @param string $gameId
+     * @return array
+     */
     public function getGuessAttemptsByGameId(string $gameId): array
     {
         // Get the data from cache or return an empty array
         return Cache::get($gameId, []);
     }
 
-    // Remove all proposals for the game with the given game ID
+    /**
+     * Remove all proposals for the game with the given game ID
+     *
+     * @param string $gameId
+     * @return void
+     */
     public function removeGuessAttemptByGameId(string $gameId): void
     {
         // Forget the data from cache

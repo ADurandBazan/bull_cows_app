@@ -76,6 +76,7 @@ class GameServiceTest extends TestCase
             'lose' => false,
             'attempts_count' => 0,
             'user' => 'user1',
+            'evaluation' => 0,
             'age' => 15,
         ]);
         $guessAttempts = []; // Empty array of guess attempts
@@ -98,6 +99,7 @@ class GameServiceTest extends TestCase
             'lose' => true,
             'attempts_count' => 0,
             'user' => 'user1',
+            'evaluation' => 0,
             'age' => 15,
         ]);
         $guessAttempts = []; // Empty array of guess attempts
@@ -120,6 +122,7 @@ class GameServiceTest extends TestCase
             'lose' => false,
             'attempts_count' => 0,
             'user' => 'user1',
+            'evaluation' => 0,
             'age' => 15,
         ]);
         $guessAttempts = []; // Empty array of guess attempts

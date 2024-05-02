@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('attempts_count');
             $table->boolean('win');
             $table->boolean('lose');
+            $table->decimal('evaluation');
             $table->datetime('expires_at');
             $table->timestamps();
         });
