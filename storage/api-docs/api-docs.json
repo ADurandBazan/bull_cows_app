@@ -1,0 +1,328 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Bulls and Cows Game",
+        "description": "This is a simple bulls and cows game.",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/game": {
+            "post": {
+                "tags": [
+                    "game"
+                ],
+                "summary": "Create a new game",
+                "description": "Create a new game with the given validated data",
+                "operationId": "a0adcc6e849923fc7808a9337b1cb4ce",
+                "requestBody": {
+                    "description": "Game data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreGameRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Game created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "gameId": {
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game/{id}/attempt": {
+            "post": {
+                "tags": [
+                    "game"
+                ],
+                "summary": "Add a new attempt to the game",
+                "description": "Add a new attempt to the game with the given validated data",
+                "operationId": "19bcd3a2e4beed02e20a2c3212a49350",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the game",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Attempt data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GuessAttemptRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Attempt added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GuessAttemptDto"
+                                }
+                            }
+                        }
+                    },
+                    "412": {
+                        "description": "Duplicate proposal error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "410": {
+                        "description": "Game already over error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "408": {
+                        "description": "Game over error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "secret_number": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Element not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/game/{id}": {
+            "delete": {
+                "tags": [
+                    "game"
+                ],
+                "summary": "Delete a game",
+                "description": "Delete a game with the given ID",
+                "operationId": "d40e90d2778fdbb2b06e1dc3dc5a609e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the game",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Game deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GuessAttemptDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Element not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GuessAttemptDto": {
+                "title": "GuessAttemptDto",
+                "description": "Data transfer object for a guess attempt",
+                "properties": {
+                    "attemptId": {
+                        "description": "The ID of the guess attempt",
+                        "type": "string"
+                    },
+                    "proposal": {
+                        "description": "The proposed number",
+                        "type": "integer"
+                    },
+                    "bull_count": {
+                        "description": "The number of bulls",
+                        "type": "integer"
+                    },
+                    "cows_count": {
+                        "description": "The number of cows",
+                        "type": "integer"
+                    },
+                    "attemps": {
+                        "description": "The number of attempts",
+                        "type": "integer"
+                    },
+                    "evaluation": {
+                        "description": "The evaluation of the guess attempt",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "ranking": {
+                        "description": "The ranking of the guess attempt",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "GuessAttemptRequest": {
+                "title": "GuessAttemptRequest",
+                "description": "Guess Attempt data",
+                "required": [
+                    "proposal"
+                ],
+                "properties": {
+                    "proposal": {
+                        "type": "string",
+                        "maxLength": 4,
+                        "pattern": "^[0-9]*$"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreGameRequest": {
+                "title": "StoreGameRequest",
+                "description": "Game data",
+                "required": [
+                    "user",
+                    "age"
+                ],
+                "properties": {
+                    "user": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
