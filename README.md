@@ -13,22 +13,22 @@ This REST API is designed for the popular game "Bulls and Cows," where the compu
 
 ## Key Features:
 
-The computer randomly generates a 4-digit numerical secret code.
-The user can submit guesses for the secret code.
-The API responds with the number of "bulls" (digits correct and in the correct position) and "cows" (digits correct but in the wrong position) for each guess.
-The user has a limited time to guess the secret code.
-The API documentation is accessible at the "/api/documentation" endpoint.
+#### The computer randomly generates a 4-digit numerical secret code.
+#### The user can submit guesses for the secret code.
+#### The API responds with the number of "bulls" (digits correct and in the correct position) and "cows" (digits correct but in the wrong position) for each guess.
+#### The user has a limited time to guess the secret code.
+#### The API documentation is accessible at the "/api/documentation" endpoint.
 
 ## API Endpoints:
 
-POST /api/game/: Initiates a new game and generates a secret code.
-POST /api/game/{id}/attempt: Allows the user to submit a guess for the secret code.
-DELETE /api/game/{id}: Allows the user to delete a game by the game id.
-GET /api/documentation: Provides detailed documentation for the API.
+#### POST /api/game/: Initiates a new game and generates a secret code.
+#### POST /api/game/{id}/attempt: Allows the user to submit a guess for the secret code.
+#### DELETE /api/game/{id}: Allows the user to delete a game by the game id.
+#### GET /api/documentation: Provides detailed documentation for the API.
 
 ## Technologies Used:
 
-Programming Language: Php
-Web Framework: Laravel
-Database: SQLite
+#### Programming Language: Php
+#### Web Framework: Laravel
+#### Database: SQLite
 
