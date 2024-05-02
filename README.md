@@ -21,8 +21,9 @@ The API documentation is accessible at the "/api/documentation" endpoint.
 
 ## API Endpoints:
 
-POST /api/game/start: Initiates a new game and generates a secret code.
-POST /api/game/guess: Allows the user to submit a guess for the secret code.
+POST /api/game/: Initiates a new game and generates a secret code.
+POST /api/game/{id}/attempt: Allows the user to submit a guess for the secret code.
+DELETE /api/game/{id}: Allows the user to delete a game by the game id.
 GET /api/documentation: Provides detailed documentation for the API.
 
 ## Technologies Used:
