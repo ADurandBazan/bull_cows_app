@@ -238,15 +238,21 @@ class GameService implements GameServiceInterface
      */
     public function calculateRanking(Game $game): int
     {
-        $ranking = Game::selectRaw('
-        id,
-        RANK() OVER (ORDER BY evaluation ASC, win DESC) AS ranking
-       ')
-            ->where('id', $game->id)
-            ->first()
-            ->ranking;
+        $gamesRanking = Game::where('win', true)->count();
 
-        return $ranking;
+        $notWinningGames = Game::where('win', false)
+            ->orderBy('evaluation', 'asc')
+            ->get();
+
+        foreach ($notWinningGames as $element) {
+            $gamesRanking++;
+
+            if ($element->id == $game->id) {
+                return $gamesRanking;
+            }
+        }
+
+        return 0;
     }
 
 }
