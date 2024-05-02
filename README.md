@@ -16,7 +16,7 @@ This REST API is designed for the popular game "Bulls and Cows," where the compu
 #### The computer randomly generates a 4-digit numerical secret code.
 #### The user can submit guesses for the secret code.
 #### The API responds with the number of "bulls" (digits correct and in the correct position) and "cows" (digits correct but in the wrong position) for each guess.
-#### The user has a limited time to guess the secret code.
+#### The user has a limited time to guess the secret code(limit in .env MAX_GAME_ACTIVE_TIME=3600 seconds).
 #### The API documentation is accessible at the "/api/documentation" endpoint.
 
 ## API Endpoints:
