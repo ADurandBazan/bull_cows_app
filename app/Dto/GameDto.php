@@ -18,7 +18,7 @@ class GameDto
         $this->secret_number = $this->generateSecretNumber();
         $this->age = $data['age'];
         $this->expires_at = now()->addSeconds(env('MAX_GAME_ACTIVE_TIME'));
-        echo print_r(env('MAX_GAME_ACTIVE_TIME'), true);
+        
     }
 
     public function toArray()
